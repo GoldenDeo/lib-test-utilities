@@ -11,7 +11,7 @@ use SilpoTech\Lib\TestUtilities\Validation\ValidationTestHelper;
 class ValidationTestHelperTest extends TestCase
 {
     private array $validData;
-    private \FT\Lib\TestUtilities\Validation\ValidationTestHelper $helper;
+    private ValidationTestHelper $helper;
 
     protected function setUp(): void
     {

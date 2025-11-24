@@ -16,7 +16,7 @@ class TestDataCorruptorTest extends TestCase
     {
         $data = ['title' => 'Valid Title'];
 
-        $result = \FT\Lib\TestUtilities\Validation\TestDataCorruptor::setValue($data, 'title', 'Modified');
+        $result = TestDataCorruptor::setValue($data, 'title', 'Modified');
 
         $this->assertSame(['title' => 'Modified'], $result);
     }
