@@ -34,7 +34,7 @@ readonly class ValidationTestHelper
      */
     public function __construct(
         private array $validData,
-        private int   $expectedStatusCode = 400,
+        private int $expectedStatusCode = 400,
     ) {
     }
 
