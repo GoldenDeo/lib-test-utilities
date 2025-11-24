@@ -11,7 +11,7 @@ use SilpoTech\Lib\TestUtilities\Validation\ValidationTestHelper;
 class ValidationTestHelperTest extends TestCase
 {
     private array $validData;
-    private ValidationTestHelper $helper;
+    private \FT\Lib\TestUtilities\Validation\ValidationTestHelper $helper;
 
     protected function setUp(): void
     {
@@ -32,7 +32,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function enum_createsTestCaseWithInvalidEnumValue(): void
+    public function enumCreatesTestCaseWithInvalidEnumValue(): void
     {
         $result = $this->helper->enum('Invalid Role', 'role', 'invalid_role');
 
@@ -43,7 +43,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function enum_withCustomErrorCode_usesCustomErrorCode(): void
+    public function enumWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $result = $this->helper->enum('Invalid Role', 'role', 'admin', 'custom.error');
 
@@ -51,7 +51,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function required_removesFieldFromData(): void
+    public function requiredRemovesFieldFromData(): void
     {
         $result = $this->helper->required('Missing Name', 'name');
 
@@ -62,7 +62,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function required_withNestedField_removesNestedField(): void
+    public function requiredWithNestedFieldRemovesNestedField(): void
     {
         $result = $this->helper->required('Missing Bio', 'user.profile.bio');
 
@@ -72,7 +72,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function required_withCustomErrorCode_usesCustomErrorCode(): void
+    public function requiredWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $result = $this->helper->required('Missing Name', 'name', 'validation.not_blank');
 
@@ -80,7 +80,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function tooLong_createsStringExceedingMaxLength(): void
+    public function tooLongCreatesStringExceedingMaxLength(): void
     {
         $result = $this->helper->tooLong('Name Too Long', 'name', 50);
 
@@ -90,7 +90,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function tooLong_withCustomErrorCode_usesCustomErrorCode(): void
+    public function tooLongWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $result = $this->helper->tooLong('Name Too Long', 'name', 50, 'custom.max');
 
@@ -98,7 +98,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function tooShort_createsStringShorterThanMinLength(): void
+    public function tooShortCreatesStringShorterThanMinLength(): void
     {
         $result = $this->helper->tooShort('Name Too Short', 'name', 5);
 
@@ -108,7 +108,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function tooShort_withZeroMinLength_createsEmptyString(): void
+    public function tooShortWithZeroMinLengthCreatesEmptyString(): void
     {
         $result = $this->helper->tooShort('Empty Name', 'name', 1);
 
@@ -116,7 +116,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function tooShort_withCustomErrorCode_usesCustomErrorCode(): void
+    public function tooShortWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $result = $this->helper->tooShort('Name Too Short', 'name', 5, 'custom.min');
 
@@ -124,7 +124,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalidUrl_setsInvalidUrlValue(): void
+    public function invalidUrlSetsInvalidUrlValue(): void
     {
         $result = $this->helper->invalidUrl('Invalid Website', 'website');
 
@@ -134,7 +134,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalidUrl_withCustomErrorCode_usesCustomErrorCode(): void
+    public function invalidUrlWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $result = $this->helper->invalidUrl('Invalid Website', 'website', 'custom.url');
 
@@ -142,7 +142,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalidEmail_setsInvalidEmailValue(): void
+    public function invalidEmailSetsInvalidEmailValue(): void
     {
         $result = $this->helper->invalidEmail('Invalid Email', 'email');
 
@@ -152,7 +152,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalidEmail_withCustomErrorCode_usesCustomErrorCode(): void
+    public function invalidEmailWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $result = $this->helper->invalidEmail('Invalid Email', 'email', 'custom.email');
 
@@ -160,7 +160,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalidUuid_setsInvalidUuidValue(): void
+    public function invalidUuidSetsInvalidUuidValue(): void
     {
         $validData = ['id' => '123e4567-e89b-12d3-a456-426614174000'];
         $helper = new ValidationTestHelper($validData);
@@ -173,7 +173,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalidUuid_withCustomErrorCode_usesCustomErrorCode(): void
+    public function invalidUuidWithCustomErrorCodeUsesCustomErrorCode(): void
     {
         $validData = ['id' => '123e4567-e89b-12d3-a456-426614174000'];
         $helper = new ValidationTestHelper($validData);
@@ -184,7 +184,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalid_withSingleError_createsSingleErrorArray(): void
+    public function invalidWithSingleErrorCreatesSingleErrorArray(): void
     {
         $result = $this->helper->invalid('Negative Age', 'age', -5, 'validation.positive');
 
@@ -194,7 +194,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalid_withMultipleErrors_createsMultipleErrorArray(): void
+    public function invalidWithMultipleErrorsCreatesMultipleErrorArray(): void
     {
         $result = $this->helper->invalid(
             'Empty Name',
@@ -212,7 +212,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalid_withNullValue_setsNullValue(): void
+    public function invalidWithNullValueSetsNullValue(): void
     {
         $result = $this->helper->invalid('Null Age', 'age', null, 'validation.not_null');
 
@@ -220,7 +220,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function invalid_withArrayValue_setsArrayValue(): void
+    public function invalidWithArrayValueSetsArrayValue(): void
     {
         $result = $this->helper->invalid('Invalid Type', 'age', ['not', 'a', 'number'], 'validation.type');
 
@@ -228,7 +228,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function constructor_withCustomStatusCode_usesCustomStatusCode(): void
+    public function constructorWithCustomStatusCodeUsesCustomStatusCode(): void
     {
         $helper = new ValidationTestHelper($this->validData, expectedStatusCode: 422);
 
@@ -238,7 +238,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function allMethods_doNotModifyOriginalValidData(): void
+    public function allMethodsDoNotModifyOriginalValidData(): void
     {
         $originalData = $this->validData;
 
@@ -251,7 +251,7 @@ class ValidationTestHelperTest extends TestCase
     }
 
     #[Test]
-    public function testCase_hasExpectedStructure(): void
+    public function testCaseHasExpectedStructure(): void
     {
         $result = $this->helper->required('Test', 'name');
 

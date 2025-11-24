@@ -12,17 +12,17 @@ use SilpoTech\Lib\TestUtilities\Validation\TestDataCorruptor;
 class TestDataCorruptorTest extends TestCase
 {
     #[Test]
-    public function setValue_withSimpleField_setsValue(): void
+    public function setValueWithSimpleFieldSetsValue(): void
     {
         $data = ['title' => 'Valid Title'];
 
-        $result = TestDataCorruptor::setValue($data, 'title', 'Modified');
+        $result = \FT\Lib\TestUtilities\Validation\TestDataCorruptor::setValue($data, 'title', 'Modified');
 
         $this->assertSame(['title' => 'Modified'], $result);
     }
 
     #[Test]
-    public function setValue_withNestedField_setsNestedValue(): void
+    public function setValueWithNestedFieldSetsNestedValue(): void
     {
         $data = ['user' => ['name' => 'John', 'age' => 25]];
 
@@ -33,7 +33,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setValue_withDeeplyNestedField_setsValue(): void
+    public function setValueWithDeeplyNestedFieldSetsValue(): void
     {
         $data = ['level1' => ['level2' => ['level3' => 'value']]];
 
@@ -44,7 +44,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setValue_withNonExistentPath_createsIntermediateArrays(): void
+    public function setValueWithNonExistentPathCreatesIntermediateArrays(): void
     {
         $data = ['existing' => 'value'];
 
@@ -58,7 +58,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setValue_withArrayIndex_setsValueAtIndex(): void
+    public function setValueWithArrayIndexSetsValueAtIndex(): void
     {
         $data = ['items' => ['first', 'second', 'third']];
 
@@ -69,7 +69,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setValue_withEmptyString_setsEmptyString(): void
+    public function setValueWithEmptyStringSetsEmptyString(): void
     {
         $data = ['field' => 'value'];
 
@@ -79,7 +79,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setValue_withNull_setsNull(): void
+    public function setValueWithNullSetsNull(): void
     {
         $data = ['field' => 'value'];
 
@@ -89,7 +89,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setValue_doesNotModifyOriginalArray(): void
+    public function setValueDoesNotModifyOriginalArray(): void
     {
         $data = ['field' => 'original'];
 
@@ -99,7 +99,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function removeValue_withSimpleField_removesField(): void
+    public function removeValueWithSimpleFieldRemovesField(): void
     {
         $data = ['keep' => 'value', 'remove' => 'this'];
 
@@ -109,7 +109,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function removeValue_withNestedField_removesNestedField(): void
+    public function removeValueWithNestedFieldRemovesNestedField(): void
     {
         $data = ['user' => ['name' => 'John', 'age' => 25]];
 
@@ -120,7 +120,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function removeValue_withDeeplyNestedField_removesField(): void
+    public function removeValueWithDeeplyNestedFieldRemovesField(): void
     {
         $data = [
             'level1' => [
@@ -138,7 +138,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function removeValue_withNonExistentPath_doesNothing(): void
+    public function removeValueWithNonExistentPathDoesNothing(): void
     {
         $data = ['existing' => 'value'];
 
@@ -148,7 +148,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function removeValue_withArrayIndex_removesIndexedValue(): void
+    public function removeValueWithArrayIndexRemovesIndexedValue(): void
     {
         $data = ['items' => ['first', 'second', 'third']];
 
@@ -159,7 +159,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function removeValue_doesNotModifyOriginalArray(): void
+    public function removeValueDoesNotModifyOriginalArray(): void
     {
         $data = ['field' => 'value'];
 
@@ -169,7 +169,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setEmptyArray_setsEmptyArray(): void
+    public function setEmptyArraySetsEmptyArray(): void
     {
         $data = ['field' => ['has', 'values']];
 
@@ -179,7 +179,7 @@ class TestDataCorruptorTest extends TestCase
     }
 
     #[Test]
-    public function setEmptyArray_withNestedPath_setsEmptyArray(): void
+    public function setEmptyArrayWithNestedPathSetsEmptyArray(): void
     {
         $data = ['user' => ['items' => ['a', 'b', 'c']]];
 
@@ -191,7 +191,7 @@ class TestDataCorruptorTest extends TestCase
 
     #[Test]
     #[DataProvider('complexDataProvider')]
-    public function setValue_withComplexStructures_worksCorrectly(
+    public function setValueWithComplexStructuresWorksCorrectly(
         array $data,
         string $path,
         mixed $value,
