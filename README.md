@@ -46,7 +46,7 @@ protected function tearDown(): void
 Manipulates nested array structures using dot notation for test data preparation.
 
 ```php
-use FT\Lib\TestUtilities\Validation\TestDataCorruptor;
+use SilpoTech\Lib\TestUtilities\Validation\TestDataCorruptor;
 
 $data = [
     'user' => [
@@ -72,7 +72,7 @@ $corrupted = TestDataCorruptor::setEmptyArray($data, 'user.profile');
 Creates standardized validation test cases from valid data.
 
 ```php
-use FT\Lib\TestUtilities\Validation\ValidationTestHelper;
+use SilpoTech\Lib\TestUtilities\Validation\ValidationTestHelper;
 
 $validData = [
     'name' => 'John Doe',
@@ -108,7 +108,7 @@ $testCase = $helper->invalid('Negative Age', 'age', -1, 'validation.positive');
 **Complete example with PHPUnit:**
 
 ```php
-use FT\Lib\TestUtilities\Validation\ValidationTestHelper;
+use SilpoTech\Lib\TestUtilities\Validation\ValidationTestHelper;
 
 class UserValidationTest extends TestCase
 {
