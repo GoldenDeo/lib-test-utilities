@@ -29,8 +29,8 @@ namespace SilpoTech\Lib\TestUtilities\Validation;
 readonly class ValidationTestHelper
 {
     /**
-     * @param array $validData Base valid data to corrupt for test cases
-     * @param int $expectedStatusCode Expected HTTP status code for validation errors (default: 400)
+     * @param array $validData          Base valid data to corrupt for test cases
+     * @param int   $expectedStatusCode Expected HTTP status code for validation errors (default: 400)
      */
     public function __construct(
         private array $validData,
@@ -57,10 +57,10 @@ readonly class ValidationTestHelper
     /**
      * Tests enum validation by setting an invalid choice value.
      *
-     * @param string $name Test case name
-     * @param string $fieldPath Dot-notation path to the field (e.g., 'user.role')
+     * @param string $name         Test case name
+     * @param string $fieldPath    Dot-notation path to the field (e.g., 'user.role')
      * @param string $invalidValue Invalid enum value
-     * @param string $errorCode Expected validation error code (default: 'validation.choice')
+     * @param string $errorCode    Expected validation error code (default: 'validation.choice')
      */
     public function enum(
         string $name,
@@ -82,7 +82,7 @@ readonly class ValidationTestHelper
     /**
      * Tests required field validation by removing a field.
      *
-     * @param string $name Test case name
+     * @param string $name      Test case name
      * @param string $fieldPath Dot-notation path to the field (e.g., 'user.name')
      * @param string $errorCode Expected validation error code (default: 'validation.not_null')
      */
@@ -104,9 +104,9 @@ readonly class ValidationTestHelper
     /**
      * Tests max length validation by setting a value that exceeds the limit.
      *
-     * @param string $name Test case name
+     * @param string $name      Test case name
      * @param string $fieldPath Dot-notation path to the field
-     * @param int $maxLength Maximum allowed length
+     * @param int    $maxLength Maximum allowed length
      * @param string $errorCode Expected validation error code (default: 'validation.length.max')
      */
     public function tooLong(
@@ -131,9 +131,9 @@ readonly class ValidationTestHelper
     /**
      * Tests min length validation by setting a value that is too short.
      *
-     * @param string $name Test case name
+     * @param string $name      Test case name
      * @param string $fieldPath Dot-notation path to the field
-     * @param int $minLength Minimum required length
+     * @param int    $minLength Minimum required length
      * @param string $errorCode Expected validation error code (default: 'validation.length.min')
      */
     public function tooShort(
@@ -158,7 +158,7 @@ readonly class ValidationTestHelper
     /**
      * Tests URL validation by setting an invalid URL.
      *
-     * @param string $name Test case name
+     * @param string $name      Test case name
      * @param string $fieldPath Dot-notation path to the field
      * @param string $errorCode Expected validation error code (default: 'validation.url')
      */
@@ -181,7 +181,7 @@ readonly class ValidationTestHelper
     /**
      * Tests email validation by setting an invalid email.
      *
-     * @param string $name Test case name
+     * @param string $name      Test case name
      * @param string $fieldPath Dot-notation path to the field
      * @param string $errorCode Expected validation error code (default: 'validation.email')
      */
@@ -204,7 +204,7 @@ readonly class ValidationTestHelper
     /**
      * Tests UUID validation by setting an invalid UUID.
      *
-     * @param string $name Test case name
+     * @param string $name      Test case name
      * @param string $fieldPath Dot-notation path to the field
      * @param string $errorCode Expected validation error code (default: 'validation.uuid')
      */
@@ -227,9 +227,9 @@ readonly class ValidationTestHelper
     /**
      * Tests generic invalid value with custom validation errors.
      *
-     * @param string $name Test case name
-     * @param string $fieldPath Dot-notation path to the field
-     * @param mixed $invalidValue Invalid value to set
+     * @param string       $name           Test case name
+     * @param string       $fieldPath      Dot-notation path to the field
+     * @param mixed        $invalidValue   Invalid value to set
      * @param array|string $expectedErrors Expected validation error code(s)
      */
     public function invalid(
